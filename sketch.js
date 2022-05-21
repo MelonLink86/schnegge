@@ -4,7 +4,6 @@ let food;
 let w;
 let h;
 
-
 function setup() {
   createCanvas(800, 800);
   w = floor(width / rez);
@@ -14,14 +13,11 @@ function setup() {
   foodLocation();
 }
 
-
 function foodLocation() {
   let x = floor(random(w));
   let y = floor(random(h));
   food = createVector(x, y);
-
 }
-
 
   //function reset (){
   // if snake.endGame() {
@@ -49,7 +45,6 @@ function keyPressed() {
  // else if (keyCode === ENTER) {
    //  loop(); 
    //reset();,
-  
 }
 
 function draw() {
@@ -61,7 +56,6 @@ function draw() {
   snake.update();
   snake.show();
 
-  
   if (snake.endGame()) {
     print('END GAME');
     background(255, 0, 0);
@@ -72,14 +66,9 @@ function draw() {
     textAlign(CENTER);
     text('du hurensohn spiel spiele die du kannst du bastard', width/2/ rez, height/2/rez-0.5);
     text('du bist so schlecht: ' + ((width/rez*height/rez)-snake.len), width/2/rez, height/2/rez+0.5);
-    noLoop();
-  
-    
+    noLoop();    
 }
-
-  
   noStroke();
   fill(255, 0, 0);
-  rect(food.x, food.y, 1, 1);
-  
+  rect(food.x, food.y, 1, 1); 
 }

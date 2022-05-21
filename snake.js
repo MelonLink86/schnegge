@@ -20,7 +20,6 @@ class Snake {
       head.x += this.xdir;
       head.y += this.ydir;
       this.body.push(head);
-  
       //this.body[0].x += this.xdir;
       //this.body[0].y += this.ydir;
     }
@@ -43,8 +42,7 @@ class Snake {
           return true;
         }
       }
-      return false;
-      
+      return false;      
     }
   
     eat(pos) {
@@ -58,11 +56,15 @@ class Snake {
     }
   
     show() {
-      for (let i = 0; i < this.body.length; i++) {
-        fill(68, 47, 41);
-        noStroke();
+      noStroke();
+      colorMode(HSB, 100);
+      for (let i = this.body.length-2; i >= 0; i--) {
+        fill((this.body.length-i+8)*10%100, 100, 90);
         rect(this.body[i].x, this.body[i].y, 1, 1);
-      }
+      }    
+      colorMode(RGB, 255); 
+      fill(0, 0, 0);
+      rect(this.body[this.body.length-1].x, this.body[this.body.length-1].y, 1, 1)
     }
   }
   
