@@ -3,12 +3,14 @@ let rez = 40;
 let food;
 let w;
 let h;
+let scooter;
+let bad;
 
 function setup() {
   createCanvas(800, 800);
   w = floor(width / rez);
   h = floor(height / rez);
-  frameRate(5);
+  frameRate(30);
   snake = new Snake(w, h);
   foodLocation();
 }
@@ -47,28 +49,41 @@ function keyPressed() {
    //reset();,
 }
 
+function preload() {
+  scooter = loadImage('assets/scooter.jpg');
+  bad = loadImage('assets/bad.jpg')
+}
+
 function draw() {
   scale(rez);
   background(200);
-  if (snake.eat(food)) {
-    foodLocation();
+  image(scooter, 0, 0, width/rez, height/rez);
+
+  if (frameCount%6 == 0){
+    if (snake.eat(food)) {
+      foodLocation();
+    }
+    snake.update();
   }
-  snake.update();
-  snake.show();
+  snake.show(frameCount);
+  noStroke();
+  colorMode(HSB, 100);
+  fill(frameCount*25%100, 100, 100);
+  rect(food.x, food.y, 1, 1); 
 
   if (snake.endGame()) {
     print('END GAME');
     background(255, 0, 0);
+      image(bad, 0, 0, width/rez, height/rez)
 
 
-    fill(0, 0, 255);
-    textSize(0.7);
+    fill(255);
+    textSize(0.8);
+    textStyle(BOLD)
     textAlign(CENTER);
-    text('du hurensohn spiel spiele die du kannst du bastard', width/2/ rez, height/2/rez-0.5);
-    text('du bist so schlecht: ' + ((width/rez*height/rez)-snake.len), width/2/rez, height/2/rez+0.5);
+    text('du hurensohn spiel spiele die du kannst du bastard', width/2/ rez, height/2/rez-1);
+    text('so ein schwinepriester: ' + ((width/rez*height/rez)-snake.len), width/2/rez, height/2/rez+2.5);
     noLoop();    
 }
-  noStroke();
-  fill(255, 0, 0);
-  rect(food.x, food.y, 1, 1); 
+
 }

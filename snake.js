@@ -55,15 +55,15 @@ class Snake {
       return false;
     }
   
-    show() {
+    show(frameCount) {
       noStroke();
       colorMode(HSB, 100);
       for (let i = this.body.length-2; i >= 0; i--) {
-        fill((this.body.length-i+8)*10%100, 100, 90);
+        fill((this.body.length-i+(frameCount/10%20))*10%100, 100, 90);
         rect(this.body[i].x, this.body[i].y, 1, 1);
       }    
       colorMode(RGB, 255); 
-      fill(0, 0, 0);
+      fill(0);
       rect(this.body[this.body.length-1].x, this.body[this.body.length-1].y, 1, 1)
     }
   }
