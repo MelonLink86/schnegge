@@ -5,6 +5,7 @@ let w;
 let h;
 let scooter;
 let bad;
+let drei;
 
 function setup() {
   createCanvas(800, 800);
@@ -52,12 +53,13 @@ function keyPressed() {
 function preload() {
   scooter = loadImage('assets/scooter.jpg');
   bad = loadImage('assets/bad.jpg')
+  drei = loadImage('assets/drei.gif')
 }
 
 function draw() {
   scale(rez);
   background(200);
-  image(scooter, 0, 0, width/rez, height/rez);
+  image(drei, 0, 0, width/rez, height/rez);
 
   if (frameCount%6 == 0){
     if (snake.eat(food)) {
@@ -74,10 +76,10 @@ function draw() {
   if (snake.endGame()) {
     print('END GAME');
     background(255, 0, 0);
-      image(bad, 0, 0, width/rez, height/rez)
+      image(scooter, 0, 0, width/rez, height/rez)
 
-
-    fill(255);
+    colorMode(HSB, 100);
+    fill(frameCount*5%100, 100, 100);
     textSize(0.8);
     textStyle(BOLD)
     textAlign(CENTER);
