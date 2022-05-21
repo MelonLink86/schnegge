@@ -6,6 +6,17 @@ let h;
 let scooter;
 let bad;
 let drei;
+let benzin;
+let schlecht;
+let started = false;
+
+//function rassissmus(){
+  //var audio = new Audio('mirkarassis.wav');
+  //setInterval(()=>{
+    //  audio.play();
+  //},600);
+//}
+
 
 function setup() {
   createCanvas(800, 800);
@@ -32,6 +43,10 @@ function foodLocation() {
   //}
 
 function keyPressed() {
+  if (!started){
+    benzin.play();
+    started = true
+  }
   if (!snake.endGame()) {
     if (keyCode === LEFT_ARROW) {
       snake.setDir(-1, 0);
@@ -52,28 +67,22 @@ function keyPressed() {
 
 function preload() {
   scooter = loadImage('assets/scooter.jpg');
-  bad = loadImage('assets/bad.jpg')
-  drei = loadImage('assets/drei.gif')
+  bad = loadImage('assets/bad.jpg');
+  drei = loadImage('assets/drei.gif');
+  benzin = loadSound('assets/benzin.mp3');
+  schlecht = loadSound('assets/schlecht.mp3');
 }
 
 function draw() {
-  scale(rez);
-  background(200);
-  image(drei, 0, 0, width/rez, height/rez);
-
-  if (frameCount%6 == 0){
-    if (snake.eat(food)) {
-      foodLocation();
-    }
-    snake.update();
+  if (!benzin.isPlaying() && started){
+    benzin.play()
   }
-  snake.show(frameCount);
-  noStroke();
-  colorMode(HSB, 100);
-  fill(frameCount*25%100, 100, 100);
-  rect(food.x, food.y, 1, 1); 
+  scale(rez);
 
   if (snake.endGame()) {
+    benzin.stop();
+    schlecht.play();
+
     print('END GAME');
     background(255, 0, 0);
       image(scooter, 0, 0, width/rez, height/rez)
@@ -85,7 +94,24 @@ function draw() {
     textAlign(CENTER);
     text('du hurensohn spiel spiele die du kannst du bastard', width/2/ rez, height/2/rez-1);
     text('so ein schwinepriester: ' + ((width/rez*height/rez)-snake.len), width/2/rez, height/2/rez+2.5);
-    noLoop();    
-}
+     
+  }
+  else {
+    background(200);
+    image(drei, 0, 0, width/rez, height/rez);
+  
+    if (frameCount%6 == 0){
+      if (snake.eat(food)) {
+        foodLocation();
+      }
+      snake.update();
+    }
+    snake.show(frameCount);
+    noStroke();
+    colorMode(HSB, 100);
+    fill(frameCount*25%100, 100, 100);
+    rect(food.x, food.y, 1, 1); 
+
+  }
 
 }
