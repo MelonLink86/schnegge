@@ -10,7 +10,7 @@ function setup() {
   w = floor(width / rez);
   h = floor(height / rez);
   frameRate(5);
-  snake = new Snake();
+  snake = new Snake(w, h);
   foodLocation();
 }
 
@@ -63,24 +63,23 @@ function draw() {
 
   
   if (snake.endGame()) {
-    print("END GAME");
+    print('END GAME');
     background(255, 0, 0);
 
 
     fill(0, 0, 255);
     textSize(0.7);
-    textAlign(CENTER)
-    text("du hurensohn spiel spiele die du kannst du bastard", width/2/ rez, height/2/rez-0.5);
-    console.log((width/rez*height/rez)-snake.len)
-    text("du bist so schlecht: " + ((width/rez*height/rez)-snake.len), width/2/rez, height/2/rez+0.5);
+    textAlign(CENTER);
+    text('du hurensohn spiel spiele die du kannst du bastard', width/2/ rez, height/2/rez-0.5);
+    text('du bist so schlecht: ' + ((width/rez*height/rez)-snake.len), width/2/rez, height/2/rez+0.5);
     noLoop();
   
     
 }
 
   
-  noStroke()
+  noStroke();
   fill(255, 0, 0);
-  rect(food.x, food.y, 1, 1)
+  rect(food.x, food.y, 1, 1);
   
 }
