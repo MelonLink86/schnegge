@@ -11,14 +11,6 @@ let schlecht;
 let sans;
 let started = false;
 
-//function rassissmus(){
-  //var audio = new Audio('mirkarassis.wav');
-  //setInterval(()=>{
-    //  audio.play();
-  //},600);
-//}
-
-
 function setup() {
   createCanvas(800, 800);
   w = floor(width / rez);
@@ -34,21 +26,11 @@ function foodLocation() {
   food = createVector(x, y);
 }
 
-  //function reset (){
-  // if snake.endGame() {
-
-    //setup();
-    //body = 0;
-    //len = 0;
-  // }
-  //}
-
-
 function keyPressed() {
-  if (!started){
-    benzin.play();
+/*  musik (!started){
+    musik.play();
     started = true
-  }
+  } */
   if (!snake.endGame()) {
     if (keyCode === LEFT_ARROW) {
       snake.setDir(-1, 0);
@@ -58,13 +40,10 @@ function keyPressed() {
       snake.setDir(0, 1);
     } else if (keyCode === UP_ARROW) {
       snake.setDir(0, -1); 
-    } else if (key == ' ') {
-    snake.grow();
+    } else if (keyCode === ENTER) {
+      snake.grow();
     }
   }
- // else if (keyCode === ENTER) {
-   //  loop(); 
-   //reset();,
 }
 
 function preload() {
@@ -72,18 +51,18 @@ function preload() {
   drei = loadImage('assets/drei.gif');
   lol = loadImage('assets/lol.gif');
   sans = loadImage('assets/sans.gif');
-  benzin = loadSound('assets/benzin.mp3');
   schlecht = loadSound('assets/schlecht.mp3');
+//  musik = loadSound('assets/musik.mp3');
 }
 
 function draw() {
-  if (!benzin.isPlaying() && started){
-    benzin.play()
-  }
+  /* if (!"musik".isPlaying() && started){
+   "musik".play()
+  } */
   scale(rez);
 
   if (snake.endGame()) {
-    benzin.stop();
+    //musik.stop();
     if (!schlecht.isPlaying()){
      schlecht.play();
     }
