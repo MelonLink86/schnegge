@@ -69,15 +69,13 @@ function draw() {
     print('END GAME');
     background(255, 0, 0);
     image(scooter, 0, 0, width/rez, height/rez);
-      
     colorMode(HSB, 100);
     fill(frameCount*5%100, 100, 100);
     textSize(0.8);
     textStyle(BOLD);
     textAlign(CENTER);
     text('du hurensohn spiel spiele die du kannst du bastard', width/2/ rez, height/2/rez-1);
-    text('so ein schwinepriester: ' + ((width/rez*height/rez)-snake.len), width/2/rez, height/2/rez+2.5);
-    
+    text('so ein schwinepriester: ' + ((width/rez*height/rez)-snake.len), width/2/rez, height/2/rez+2.5);    
     translate(width/2/rez-5, height/2/rez-6);
     rotate(frameCount/20%(2*PI));
         imageMode(CENTER);
@@ -91,7 +89,6 @@ function draw() {
         translate(0, 0);
         rotate(0);    
       }
-
   else {
     background(200);
     image(drei, 0, 0, width/rez, height/rez);
@@ -107,7 +104,5 @@ function draw() {
     colorMode(HSB, 100);
     fill(frameCount*25%100, 100, 100);
     rect(food.x, food.y, 1, 1); 
-
   }
-
 }
