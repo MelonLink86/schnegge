@@ -5,7 +5,7 @@ let w;
 let h;
 let scooter;
 let drei;
-let benzin;
+//let musik;
 let lol;
 let schlecht;
 let sans;
